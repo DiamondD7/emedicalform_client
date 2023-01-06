@@ -1,0 +1,19 @@
+.search-container{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.search-input{
+    text-align: center;
+    font-size: 17px;
+    width: 700px;
+}
+
+.search-btn{
+    background-color: transparent;
+    border: none;
+    margin-left: 20px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+}

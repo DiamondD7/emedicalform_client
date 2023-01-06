@@ -1,0 +1,104 @@
+.title{
+    margin-left: 20px;
+}
+
+.form-container{
+    /* background-color: red; */
+    margin:30px 0 0 20px;
+}
+
+.form-secondary-container{
+    display: flex;
+}
+
+.form-third-container{
+    display: flex;
+    margin: 30px 0;
+}
+
+.form-divider{
+    margin-top: 10px;
+}
+
+.genderselection{
+    width: 185px;
+}
+
+.location-divider{
+    margin-left: 20px;
+}
+
+.emergency-contact-divider{
+    margin-left: 180px;
+}
+
+.emergencyname{
+    width: 380px;
+}
+
+.emergencyrelationship{
+    width: 175px;
+    margin-left: 20px;
+}
+
+.divide-flex{
+    display: flex;
+}
+
+
+.GP-divider{
+    margin-left: 180px;
+}
+
+.gpselection{
+    width: 250px;
+}
+
+.form-label{
+    font-size: 19px;
+    margin-right: 5px;
+}
+
+.form-input{
+    font-size: 17px;
+}
+
+.postcode{
+    width: 120px;
+}
+
+.city{
+    width: 165px;
+    margin-left: 10px;
+}
+
+.postal-city-divider{
+    display: flex;
+}
+
+.address{
+    width: 300px;
+}
+
+.personalemail{
+    position: absolute;
+    width: 383px;
+}
+
+.text-area{
+    min-width: 350px;
+    max-width: 350px;
+
+    min-height: 120px;
+    max-height: 120px;
+}
+
+
+.radio-label{
+    margin-right: 5px;
+}
+
+.radio-label-no{
+    margin-right: 9px;
+}
+
