@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { doctordata } from "../../Mock/mockdoctors";
 
 import "../../styles/formstyles.css";
 const Form = () => {
@@ -184,9 +185,11 @@ const Form = () => {
                 <br />
                 <select className="form-input gpselection">
                   <option>None</option>
-                  <option>Dr. Amiri Kah</option>
-                  <option>Dr. Phil Lipens</option>
-                  <option>Dr. Sawt Koria</option>
+                  {doctordata.map((items) => (
+                    <option key={items.id}>
+                      Dr. {items.first_name} {items.last_name}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
