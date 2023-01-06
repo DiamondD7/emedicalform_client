@@ -114,19 +114,11 @@ const Form = () => {
                 </div>
               </div>
               <div className="form-divider">
-                <label className="form-label" htmlFor="suburb">
-                  Height(cm)
+                <label className="form-label" htmlFor="mobilenum">
+                  Mobile Number
                 </label>
                 <br />
-                <input className="form-input" type="text" id="suburb" />
-              </div>
-
-              <div className="form-divider">
-                <label className="form-label" htmlFor="suburb">
-                  Weight(kg)
-                </label>
-                <br />
-                <input className="form-input" type="text" id="suburb" />
+                <input className="form-input" type="text" id="mobilenum" />
               </div>
             </div>
 
@@ -191,7 +183,7 @@ const Form = () => {
                 </label>
                 <br />
                 <select className="form-input gpselection">
-                  <option></option>
+                  <option>None</option>
                   <option>Dr. Amiri Kah</option>
                   <option>Dr. Phil Lipens</option>
                   <option>Dr. Sawt Koria</option>
@@ -282,6 +274,10 @@ const Form = () => {
                 />
               </div>
             </div>
+          </div>
+
+          <div className="btn-div">
+            <button className="btn-sub">Submit</button>
           </div>
         </form>
       </div>
