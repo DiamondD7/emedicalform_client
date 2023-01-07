@@ -1,9 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { data } from "../../Mock/mockdata";
+import { API_URI } from "../../assets/js/Apiuri";
 
 import "../../styles/searchstyles.css";
 const Search = () => {
   const [search, setSearch] = useState("");
+  const [apiData, setApiData] = useState([]);
+
+  //fetch data from asp.net web api
+  useEffect(() => {
+    fetch(API_URI)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data); //checking if data can be read
+        setApiData(data);
+      });
+  }, []);
+
   return (
     <div>
       <div className="search-container">
@@ -29,19 +42,19 @@ const Search = () => {
           </thead>
 
           <tbody className="table-tbody-container">
-            {data
+            {apiData
               .filter((items) => {
                 return search.toLowerCase() === ""
                   ? items
-                  : items.first_name.toLowerCase().includes(search) ||
-                      items.last_name.toLowerCase().includes(search);
+                  : items.firstName.toLowerCase().includes(search) ||
+                      items.lastName.toLowerCase().includes(search);
               })
               .map((items) => (
                 <tr key={items.id}>
-                  <td>{items.first_name}</td>
-                  <td>{items.last_name}</td>
-                  <td>{items.email}</td>
-                  <td>{items.gender}</td>
+                  <td>{items.firstName}</td>
+                  <td>{items.lastName}</td>
+                  <td>{items.personalEmail}</td>
+                  <td>{items.sex}</td>
                   <td>
                     <button className="btn-select">Select</button>
                   </td>
