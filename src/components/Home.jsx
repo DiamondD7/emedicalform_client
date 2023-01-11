@@ -1,4 +1,5 @@
 import React from "react";
+import Calendar from "./Calendar/CalendarView";
 import Form from "./Form/Form";
 import Search from "./Search/Search";
 const Home = () => {
@@ -9,6 +10,9 @@ const Home = () => {
       break;
     case "/form":
       component = <Form />;
+      break;
+    case "/appointments":
+      component = <Calendar />;
       break;
     default:
       console.log("Error in the switch navigation statement");
@@ -26,6 +30,11 @@ const Home = () => {
           <li>
             <button>
               <a href="/form">Form</a>
+            </button>
+          </li>
+          <li>
+            <button>
+              <a href="/appointments">Appointments</a>
             </button>
           </li>
         </ul>

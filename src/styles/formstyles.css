@@ -110,4 +110,24 @@
 .btn-sub{
     font-size: 15px;
     padding: 0 20px 0 20px;
+    margin: 5px 5px 0 5px;
+    cursor: pointer;
+}
+
+.btn-sub a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.btn-danger{
+    background-color: red;
+    color: white;
+    border:1px solid red;
+}
+
+.btn-update{
+    background-color: orange;
+    color: white;
+    border: 1px solid orange;
 }

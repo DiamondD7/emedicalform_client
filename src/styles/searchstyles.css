@@ -46,3 +46,10 @@
     padding:0 10px 0 10px;
     cursor: pointer;
 }
+
+
+.loading{
+    display: flex;
+    justify-content: center;
+    margin-top: 250px;
+}

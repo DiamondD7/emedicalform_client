@@ -1,44 +1,65 @@
 import React, { useState } from "react";
-import { doctordata } from "../../Mock/mockdoctors";
 import { API_URI } from "../../assets/js/Apiuri";
+import { doctordata } from "../../Mock/mockdoctors";
 
-import "../../styles/formstyles.css";
-const Form = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [sex, setSex] = useState("");
-  const [nationality, setNationality] = useState("");
-  const [residencyStatus, setResidencyStatus] = useState("");
-  const [personalEmail, setPersonalEmail] = useState("");
+const UpdateForm = (props) => {
+  const [firstName, setFirstName] = useState(props.updatedItems.firstName);
+  const [lastName, setLastName] = useState(props.updatedItems.lastName);
+  const [sex, setSex] = useState(props.updatedItems.sex);
+  const [nationality, setNationality] = useState(
+    props.updatedItems.nationality
+  );
+  const [residencyStatus, setResidencyStatus] = useState(
+    props.updatedItems.residencyStatus
+  );
+  const [personalEmail, setPersonalEmail] = useState(
+    props.updatedItems.personalEmail
+  );
 
-  const [address, setAddress] = useState("");
-  const [suburb, setSuburb] = useState("");
-  const [postCode, setPostCode] = useState("");
-  const [city, setCity] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState(props.updatedItems.streetAddress);
+  const [suburb, setSuburb] = useState(props.updatedItems.suburb);
+  const [postCode, setPostCode] = useState(props.updatedItems.postCode);
+  const [city, setCity] = useState(props.updatedItems.city);
+  const [phoneNumber, setPhoneNumber] = useState(
+    props.updatedItems.phoneNumber
+  );
 
-  const [contactName, setContactName] = useState("");
-  const [contactNumber, setContactNumber] = useState("");
-  const [relationship, setRelationship] = useState("");
-  const [contactEmail, setContactEmail] = useState("");
+  const [contactName, setContactName] = useState(
+    props.updatedItems.contactName
+  );
+  const [contactNumber, setContactNumber] = useState(
+    props.updatedItems.contactNumber
+  );
+  const [relationship, setRelationship] = useState(
+    props.updatedItems.relationship
+  );
+  const [contactEmail, setContactEmail] = useState(
+    props.updatedItems.emailAddress
+  );
 
-  const [generalPrac, setGeneralPrac] = useState("");
+  const [generalPrac, setGeneralPrac] = useState(props.updatedItems.gpName);
 
-  const [haveConditions, setHaveConditions] = useState("");
-  const [conditions, setConditions] = useState("");
+  const [haveConditions, setHaveConditions] = useState(
+    props.updatedItems.haveUnderlyingConditions
+  );
+  const [conditions, setConditions] = useState(
+    props.updatedItems.underlyingConditions
+  );
 
-  const [haveAllergies, setHaveAllergies] = useState("");
-  const [allergies, setAllergies] = useState("");
+  const [haveAllergies, setHaveAllergies] = useState(
+    props.updatedItems.haveAllergies
+  );
+  const [allergies, setAllergies] = useState(props.updatedItems.allergies);
 
-  const addData = (e) => {
-    e.preventDefault();
-    fetch(API_URI, {
-      method: "POST",
+  const updateData = () => {
+    fetch(API_URI + "/" + props.updatedItems.id, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
       body: JSON.stringify({
+        Id: props.updatedItems.id,
         FirstName: firstName,
         LastName: lastName,
         Sex: sex,
@@ -51,9 +72,9 @@ const Form = () => {
         Relationship: relationship,
         GpName: generalPrac,
         HaveUnderlyingConditions: haveConditions,
-        UnderlyingConditions: conditions,
-        HaveAllergies: haveAllergies,
-        Allergies: allergies,
+        underlyingConditions: conditions,
+        haveAllergies: haveAllergies,
+        allergies: allergies,
         StreetAddress: address,
         Suburb: suburb,
         PostCode: postCode,
@@ -61,17 +82,16 @@ const Form = () => {
         PhoneNumber: phoneNumber,
       }),
     })
-      .then((res) => console.log(res))
+      .then((res) => res.json())
       .then(() => {
         window.location.reload();
       });
   };
-
   return (
     <div>
       <div>
         <h1 className="title">E-medical Form</h1>
-        <form className="form-container" onSubmit={addData}>
+        <form className="form-container" onSubmit={updateData}>
           <div className="form-secondary-container">
             <div>
               <div className="form-divider">
@@ -83,6 +103,7 @@ const Form = () => {
                   className="form-input"
                   type="text"
                   id="fname"
+                  value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
@@ -95,6 +116,7 @@ const Form = () => {
                   className="form-input"
                   type="text"
                   id="lname"
+                  value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
@@ -107,6 +129,7 @@ const Form = () => {
                 <select
                   className="form-input genderselection"
                   id="gender"
+                  value={sex}
                   onChange={(e) => setSex(e.target.value)}
                 >
                   <option></option>
@@ -125,6 +148,7 @@ const Form = () => {
                   className="form-input"
                   type="text"
                   id="nationality"
+                  value={nationality}
                   onChange={(e) => setNationality(e.target.value)}
                 />
               </div>
@@ -136,6 +160,7 @@ const Form = () => {
                 <select
                   className="form-input"
                   id="rstatus"
+                  value={residencyStatus}
                   onChange={(e) => setResidencyStatus(e.target.value)}
                 >
                   <option></option>
@@ -155,6 +180,7 @@ const Form = () => {
                   className="form-input personalemail"
                   type="text"
                   id="personalemail"
+                  value={personalEmail}
                   onChange={(e) => setPersonalEmail(e.target.value)}
                 />
               </div>
@@ -169,6 +195,7 @@ const Form = () => {
                   className="form-input address"
                   type="text"
                   id="address"
+                  value={address}
                   onChange={(e) => setAddress(e.target.value)}
                 />
               </div>
@@ -181,6 +208,7 @@ const Form = () => {
                   className="form-input"
                   type="text"
                   id="suburb"
+                  value={suburb}
                   onChange={(e) => setSuburb(e.target.value)}
                 />
               </div>
@@ -194,6 +222,7 @@ const Form = () => {
                     className="form-input postcode"
                     type="text"
                     id="postcode"
+                    value={postCode}
                     onChange={(e) => setPostCode(e.target.value)}
                   />
                 </div>
@@ -207,6 +236,7 @@ const Form = () => {
                     className="form-input city"
                     type="text"
                     id="city"
+                    value={city}
                     onChange={(e) => setCity(e.target.value)}
                   />
                 </div>
@@ -220,6 +250,7 @@ const Form = () => {
                   className="form-input"
                   type="text"
                   id="mobilenum"
+                  value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />
               </div>
@@ -235,6 +266,7 @@ const Form = () => {
                   className="form-input emergencyname"
                   type="text"
                   id="eName"
+                  value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
                 />
               </div>
@@ -249,6 +281,7 @@ const Form = () => {
                     className="form-input emergencynumber"
                     type="text"
                     id="eNum"
+                    value={contactNumber}
                     onChange={(e) => setContactNumber(e.target.value)}
                   />
                 </div>
@@ -265,6 +298,7 @@ const Form = () => {
                     className="form-input emergencyrelationship"
                     type="text"
                     id="erelation"
+                    value={relationship}
                     onChange={(e) => setRelationship(e.target.value)}
                   />
                 </div>
@@ -278,6 +312,7 @@ const Form = () => {
                   className="form-input emergencyname"
                   type="text"
                   id="e-email"
+                  value={contactEmail}
                   onChange={(e) => setContactEmail(e.target.value)}
                 />
               </div>
@@ -292,6 +327,7 @@ const Form = () => {
                 <select
                   className="form-input gpselection"
                   id="gpName"
+                  value={generalPrac}
                   onChange={(e) => setGeneralPrac(e.target.value)}
                 >
                   <option>None</option>
@@ -308,65 +344,34 @@ const Form = () => {
           <div className="form-third-container">
             <div>
               <div>
-                <p>Do you have any underlying conditions?</p>
-
-                <label className="radio-label" htmlFor="yes-condition">
-                  Yes
-                </label>
-                <input
-                  name="chooseone"
-                  type="radio"
-                  id="yes-condition"
-                  value="true"
-                  onChange={(e) => setHaveConditions(e.target.value)}
-                />
                 <br />
-
+                <p>Do you have any underlying conditions?</p>
+                <p>{haveConditions === "true" ? "Yes" : "No"}</p>
                 {haveConditions === "true" ? (
                   <div>
                     <textarea
                       className="text-area"
                       placeholder="if 'yes', please explain your conditions"
+                      value={conditions}
                       onChange={(e) => setConditions(e.target.value)}
                     ></textarea>
-                    <br />
                   </div>
                 ) : (
                   ""
                 )}
-
-                <label className="radio-label-no" htmlFor="no-condition">
-                  No
-                </label>
-                <input
-                  name="chooseone"
-                  type="radio"
-                  id="no-condition"
-                  value="false"
-                  onChange={(e) => setHaveConditions(e.target.value)}
-                />
               </div>
 
               <div style={{ marginTop: "50px" }}>
                 <p htmlFor="med-condition">Do you have any allergies?</p>
 
-                <label className="radio-label" htmlFor="yes-allergies">
-                  Yes
-                </label>
-                <input
-                  name="chooseallergies"
-                  type="radio"
-                  id="yes-allergies"
-                  value="true"
-                  onChange={(e) => setHaveAllergies(e.target.value)}
-                />
-                <br />
+                <p>{haveAllergies === "true" ? "Yes" : "No"}</p>
 
                 {haveAllergies === "true" ? (
                   <div>
                     <textarea
                       className="text-area"
                       placeholder="if 'yes', please list your allergies"
+                      value={allergies}
                       onChange={(e) => setAllergies(e.target.value)}
                     ></textarea>
                     <br />
@@ -374,23 +379,15 @@ const Form = () => {
                 ) : (
                   ""
                 )}
-
-                <label className="radio-label-no" htmlFor="no-allergies">
-                  No
-                </label>
-                <input
-                  name="chooseallergies"
-                  type="radio"
-                  id="no-allergies"
-                  value="false"
-                  onChange={(e) => setHaveAllergies(e.target.value)}
-                />
               </div>
             </div>
           </div>
 
-          <div className="btn-div">
-            <button className="btn-sub">Submit</button>
+          <div>
+            <button className="btn-sub btn-danger">
+              <a href="/">Back</a>
+            </button>
+            <button className="btn-sub btn-update">Update</button>
           </div>
         </form>
       </div>
@@ -398,4 +395,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default UpdateForm;
